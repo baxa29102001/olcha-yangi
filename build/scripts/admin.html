@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js" defer></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-analytics.js" defer></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-firestore.js" defer></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-storage.js" defer></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/compressorjs/1.0.7/compressor.min.js"
+        integrity="sha512-ZNlHFR9FBdeIlhwh040g5JmmYj7DQOwkqb9Y+DBJ1MaTzRMxKZkfHWkQU/dazDn9XRriajfh7ZGFksBKeUCsCg=="
+        crossorigin="anonymous" defer></script> -->
+    <!-- <script src="../../build/scripts/main.js" type="module" defer></script> -->
+</head>
+
+<body>
+    <div class="container">
+        <h1>Admin Dashboard</h1>
+
+        <div class="categor-container">
+            <h3>Category Input</h3>
+            <form id="category-btn">
+                <input type="text" id="category-input">
+                <button type="submit" style="cursor: pointer;" class="btn">Category add</button>
+            </form>
+        </div>
+
+
+        <div class="product-container">
+            <h3>Product Container</h3>
+            <form id="product-btn">
+                <label for="title">Product title</label>
+                <input type="text" id="title">
+                <label for=" price-month">Price month</label>
+                <input type="text" id="price-month">
+                <label for="price-sum">Price sum</label>
+                <input type="text" id="price-sum">
+                <label for="category">Choose a category:</label>
+
+                <select id="kategoriy">
+                    <!-- <option value="volvo">Volvo</option>
+                    <option value="saab">Saab</option>
+                    <option value="opel">Opel</option>
+                    <option value="audi">Audi</option> -->
+                </select>
+
+
+                <label for="img" style="display: block;">Img</label>
+                <input type="file" id="img">
+
+
+                <button type="submit" style="cursor: pointer;" class="btn">Add product</button>
+
+            </form>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>
