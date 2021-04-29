@@ -26,6 +26,10 @@ body {
   padding: 10px;
 }
 
+.bg-color {
+  background-color: var(--red);
+}
+
 /* ------------------------------/Umumiy classlar------------------------------- */
 
 /* ---------------------------Top header----------------------------------------- */
@@ -122,6 +126,52 @@ body {
   background-color: #c9112e;
 }
 
+.category-btn-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 99999;
+  display: none;
+  background-color: rgba(0, 0, 0, 0.7);
+  align-items: center;
+  justify-content: center;
+}
+.display-block {
+  display: flex;
+}
+
+.category-btn-container {
+  width: 95%;
+  border-radius: 10px;
+  background-color: white;
+  display: grid;
+  grid-template-columns: 20% 1fr;
+}
+
+.category-ul {
+  margin: 0;
+  border-radius: 10px;
+  list-style: none;
+  background-color: whitesmoke;
+}
+.category-ul-item {
+  padding: 10px 10px;
+  transition: var(--time);
+  border-radius: 10px 0 0 10px;
+  cursor: pointer;
+}
+
+.content {
+  display: none;
+}
+
+.category-btn-active {
+  background-color: white;
+  color: var(--red);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+}
 .main-header__public-search {
   width: 50%;
   position: relative;
@@ -184,6 +234,16 @@ body {
   padding: 10px 5px;
   margin-right: 25px;
   transition: var(--time);
+  position: relative;
+}
+.cart-item {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: var(--red);
+  padding: 0 5px;
+  border-radius: 50%;
+  color: white;
 }
 
 .main-header-action:hover {
@@ -358,6 +418,10 @@ body {
   border-radius: 10px;
 }
 
+.card-header-img {
+  height: 200px;
+}
+
 .card:hover {
   box-shadow: 0 2px 7px rgb(102 102 102 / 30%);
 }
@@ -398,6 +462,52 @@ body {
 
 /* --------------------------------------------/Category container-------------------------------------------------------------------- */
 
+.loader-box2 {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.9);
+  z-index: 999999;
+  display: none;
+}
+
+.loader2 {
+  border: 16px solid white; /* Light grey */
+  border-top: 16px solid var(--red); /* Blue */
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loader {
+  0% {
+    transform: rotate(90deg);
+  }
+  25% {
+    transform: rotate(180deg);
+  }
+  50% {
+    transform: rotate(270deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 @media only screen and (max-width: 600px) {
   .container {
     width: 90%;

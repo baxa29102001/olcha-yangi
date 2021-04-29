@@ -1,4 +1,8 @@
 import Compressor from 'compressorjs';
+import firebase from 'firebase';
+// import firebaseFirestore from 'firebase/firebase-firestore';
+// import firebaseAnalitik from 'firebase/firebase-analytics';
+// import firebaseStorage from 'firebase/firebase-storage';
 const categoryInput = document.getElementById('category-input');
 const category = document.getElementById('kategoriy');
 const categoryBtn = document.getElementById('category-btn');
@@ -8,7 +12,7 @@ const priceSum = document.getElementById('price-sum');
 const productbtn = document.getElementById('product-btn');
 const imgInput = document.getElementById('img');
 
-var firebaseConfig = {
+export var firebaseConfig = {
   apiKey: 'AIzaSyAgZwsJMDkQVJHPpiuahohtNLtpyRMpBKc',
   authDomain: 'augmented-clock-310203.firebaseapp.com',
   projectId: 'augmented-clock-310203',
@@ -19,6 +23,7 @@ var firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
+// firebaseAnalitik();
 
 const db = firebase.firestore();
 db.settings({ timestampsInSnapshots: false });
@@ -74,7 +79,7 @@ function setFile(e) {
   });
 }
 
-export function getProducts() {
+function getProducts() {
   db.collection('products')
     .get()
     .then((res) => {
