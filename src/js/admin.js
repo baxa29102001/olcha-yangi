@@ -1,8 +1,5 @@
 import Compressor from 'compressorjs';
 import firebase from 'firebase';
-// import firebaseFirestore from 'firebase/firebase-firestore';
-// import firebaseAnalitik from 'firebase/firebase-analytics';
-// import firebaseStorage from 'firebase/firebase-storage';
 const categoryInput = document.getElementById('category-input');
 const category = document.getElementById('kategoriy');
 const categoryBtn = document.getElementById('category-btn');
@@ -11,6 +8,9 @@ const priceMonth = document.getElementById('price-month');
 const priceSum = document.getElementById('price-sum');
 const productbtn = document.getElementById('product-btn');
 const imgInput = document.getElementById('img');
+const subCategory = document.getElementById('sub-category');
+const subCategoryBtn = document.getElementById('sub-category-btn');
+const subCategoryInput = document.getElementById('sub-category-input');
 
 export var firebaseConfig = {
   apiKey: 'AIzaSyAgZwsJMDkQVJHPpiuahohtNLtpyRMpBKc',
@@ -41,9 +41,26 @@ function categoryList() {
           `;
       });
       category.innerHTML = html;
+      subCategory.innerHTML = html;
     })
     .catch((err) => {
       console.log(err);
+    });
+}
+let categoryId;
+subCategory.addEventListener('change', (e) => {
+  categoryId = e.target.options[e.target.options.selectedIndex || 0].value;
+});
+
+function subCategoryFunc() {
+  const value = subCategoryInput.value;
+  const FieldValue = firebase.firestore.FieldValue;
+  db.collection('category')
+    .doc(categoryId)
+    .update({ 'sub-category': FieldValue.arrayUnion(value) })
+    .then(() => {
+      console.log('suceess');
+      subCategoryInput.value = '';
     });
 }
 
@@ -102,11 +119,10 @@ function getProducts() {
     });
 }
 
-console.log(category);
+let quantity;
 category.addEventListener('change', (e) => {
   quantity = e.target.options[e.target.options.selectedIndex || 0].value;
 });
-let quantity;
 
 function setProduct(e) {
   e.preventDefault();
@@ -133,5 +149,6 @@ productbtn.addEventListener('submit', setProduct);
 imgInput.addEventListener('change', setFile);
 
 categoryBtn.addEventListener('submit', categoryFunc);
+subCategoryBtn.addEventListener('click', subCategoryFunc);
 categoryList();
 getProducts();

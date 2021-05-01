@@ -1,4 +1,4 @@
-import { db, imgStorage } from './Products';
+import { firebaseData, db, imgStorage } from './Products';
 import { Loader } from './Loader';
 import { beutifuyFunc } from '../helper/beutifuyNum';
 
@@ -28,11 +28,19 @@ export class Cart {
         }
         res.docs.forEach((item) => {
           let data = item.data();
+          let categoryUrl = '';
+          console.log(data.category.slice(9));
+          db.collection('category')
+            .doc(data.category.slice(9))
+            .get()
+            .then((res) => {
+              categoryUrl = res.data()['category-title'];
+            });
           imgStorage
             .ref(`products/${data.imgId}/data.jpg`)
             .getDownloadURL()
             .then((res) => {
-              this.arr.push({ ...data, id: item.id, imgUrl: res });
+              this.arr.push({ ...data, id: item.id, imgUrl: res, categoryUrl });
               loader.close();
               this.render(this.arr);
             })
@@ -45,6 +53,7 @@ export class Cart {
 
   render(arr1) {
     if (arr1.length <= 0) {
+      cartContainer.style.display = 'none';
       emptyContainer.style.display = 'block';
       return;
     }
@@ -59,7 +68,7 @@ export class Cart {
                             alt="">
                     </div>
                     <div class="cart-item__info">
-                        <h4 style="margin-bottom: 5px;">${item.category}</h4>
+                        <h4 style="margin-bottom: 5px;">${item.categoryUrl}</h4>
                         <h5 style="margin-top: 0;">${item.title}</h5>
                     </div>
                     <div class="cart-item__plus-minus">
@@ -79,11 +88,22 @@ export class Cart {
     });
 
     mainCon.innerHTML = html;
-    let plusItems = mainCon.querySelectorAll('.cart-item__plus-minus span');
+    let plusItems = mainCon.querySelectorAll(
+      '.cart-item__plus-minus span:first-child'
+    );
+    let minusItems = mainCon.querySelectorAll(
+      '.cart-item__plus-minus span:last-child'
+    );
     plusItems.forEach((plusitem) =>
       plusitem.addEventListener(
         'click',
         this.plus.bind(this, plusitem.dataset.id)
+      )
+    );
+    minusItems.forEach((minusitem) =>
+      minusitem.addEventListener(
+        'click',
+        this.minus.bind(this, minusitem.dataset.id)
       )
     );
     this.amount = document.querySelectorAll('.cart-item__plus-minus h4');
@@ -98,7 +118,6 @@ export class Cart {
   }
 
   removeFunc(id) {
-    console.log(id);
     loader.open();
     db.collection('cart')
       .doc(id)
@@ -136,15 +155,43 @@ export class Cart {
           });
       });
   }
-  minus() {}
+  minus(id) {
+    let obj = this.arr.find((item) => item.id === id);
+    if (obj.amount <= 1) {
+      return;
+    }
+
+    loader.open();
+    db.collection('cart')
+      .doc(id)
+      .update({
+        amount: obj.amount - 1,
+      })
+      .then(() => {
+        db.collection('cart')
+          .doc(id)
+          .get()
+          .then((res) => {
+            let dataAmount = res.data();
+            let arr = [...this.amount];
+            let obj = arr.findIndex((item) => item.dataset.id === id);
+            this.amount[obj].innerHTML = dataAmount.amount;
+            this.arr = [];
+            this.fetchItems();
+            this.sumUp();
+            loader.close();
+          });
+      });
+  }
 
   sumUp(arr) {
     let itemIndex = 0;
     let priceSum = 0;
-    arr.forEach((item, index) => {
-      itemIndex += item.amount;
-      priceSum += item.amount * +item['price-sum'];
-    });
+    arr &&
+      arr.forEach((item, index) => {
+        itemIndex += item.amount;
+        priceSum += item.amount * +item['price-sum'];
+      });
     cartItem.textContent = itemIndex;
     hisobItem.textContent = itemIndex + ' ta';
     hisobJami.textContent = beutifuyFunc(String(priceSum)) + " so'm";

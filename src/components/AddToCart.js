@@ -63,9 +63,11 @@ export class AddToCart {
     });
     let amountPlus = cartAlert.querySelector('#amount-plus');
     let amountMinus = cartAlert.querySelector('#amount-minus');
+    let savatcha = cartAlert.querySelector('.cart-btn');
     this.cartAmount = cartAlert.querySelector('#cart-amount');
     amountPlus.addEventListener('click', this.plusAmount.bind(this));
     amountMinus.addEventListener('click', this.minusAmount.bind(this));
+    savatcha.addEventListener('click', Loader.move);
   }
 
   plusAmount() {

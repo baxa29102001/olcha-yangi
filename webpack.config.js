@@ -9,6 +9,7 @@ module.exports = {
     admin: './src/js/admin.js',
     product: './src/js/product.js',
     cart: './src/js/cart.js',
+    filter: './src/js/filter.js',
   },
   output: {
     filename: '[name].js',

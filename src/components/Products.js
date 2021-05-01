@@ -10,7 +10,7 @@ export let firebaseConfig = {
   appId: '1:335468813630:web:bdb0cb6ed55c4081bb206f',
   measurementId: 'G-V8W5LF6E6T',
 };
-firebase.initializeApp(firebaseConfig);
+export const firebaseData = firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 export const imgStorage = firebase.storage();
 
