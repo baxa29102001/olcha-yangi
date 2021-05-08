@@ -1,0 +1,52 @@
+:root {
+  --red: #eb1537;
+  --time: 0.3s linear;
+  --text-gray: #797979;
+  --hover-gray: #f0f2f4;
+}
+
+.filter-main__container {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  column-gap: 10px;
+}
+.filtered__content {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.none-btn {
+  cursor: pointer;
+  margin-bottom: 0;
+}
+.filter-none {
+  display: none;
+}
+.filter-block {
+  display: block;
+}
+.filter-price__input {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 10px;
+}
+.filter-price__input input {
+  width: 80%;
+}
+.filtered-version {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 5px;
+}
+.filtered-version p {
+  border: 1px solid var(--text-gray);
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 2px 5px;
+}
+.bg-red {
+  transition: var(--time);
+  background-color: var(--red);
+  color: white;
+  border: none !important;
+}

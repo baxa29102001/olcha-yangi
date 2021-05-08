@@ -17,12 +17,13 @@ export class Category {
             <li class="category-ul-item" data-id="${ele.id}">${data['category-title']}</li>
             `;
           let arr = data['sub-category'];
-
           subCategory += ` 
            <li class="content" id=${ele.id}>
               ${arr
                 .map((item) => {
-                  return `<p>${item}</p>`;
+                  return `<a href='filter.html?filterId=${ele.id}'>
+                  <p>${item}</p>
+                  </a>`;
                 })
                 .join(' ')}
            </li>`;

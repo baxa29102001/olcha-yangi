@@ -30,6 +30,11 @@ body {
   background-color: var(--red);
 }
 
+.body-change {
+  background-color: #212529ff;
+  color: var(--hover-gray) !important;
+}
+
 /* ------------------------------/Umumiy classlar------------------------------- */
 
 /* ---------------------------Top header----------------------------------------- */

@@ -1,4 +1,4 @@
-import { firebaseData, db, imgStorage } from './Products';
+import { db, imgStorage } from './Products';
 import { Loader } from './Loader';
 import { beutifuyFunc } from '../helper/beutifuyNum';
 

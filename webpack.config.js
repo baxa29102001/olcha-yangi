@@ -18,7 +18,7 @@ module.exports = {
   },
   devtool: 'eval-source-map',
   devServer: {
-    // contentBase: '',
+    // contentBase: path.join(__dirname, 'build', 'html'),
     open: true,
   },
   module: {
