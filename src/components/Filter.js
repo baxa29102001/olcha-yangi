@@ -12,8 +12,6 @@ export class Filter {
 
   fetchFilterItems() {
     db.collection('category')
-      // .orderByChild(`${this.id}/filter`)
-
       .doc(this.id)
       .get()
       .then((res) => {
@@ -34,7 +32,7 @@ export class Filter {
                           <div class='filtered-version ${i}' >
                           ${obj[i].arr
                             .map((item) => {
-                              return `<p data-id='${item}' check=''>${item}</p>`;
+                              return `<p data-name='${i}' data-id='${item}' check=''>${item}</p>`;
                             })
                             .join(' ')}
                           </div>
@@ -140,9 +138,9 @@ export class Filter {
 
   checkFunc(e) {
     if (e.target.checked) {
-      window.location.search = `${window.location.search}&brand=${e.target.dataset.id}`;
+      window.location.search = `${window.location.search}&brands=${e.target.dataset.id}`;
     } else {
-      let regexp = new RegExp(`&brand=${e.target.dataset.id}`, 'i');
+      let regexp = new RegExp(`&brands=${e.target.dataset.id}`, 'i');
       let mateched = window.location.search.replace(regexp, '');
       window.location.search = mateched;
     }
@@ -150,7 +148,7 @@ export class Filter {
 
   urlCheckBox(html) {
     const params = new URLSearchParams(window.location.search);
-    const ids = params.getAll('brand');
+    const ids = params.getAll('brands');
     ids.forEach((item) => {
       let ele = html.querySelector(`input[data-id='${item}']`);
       ele.checked = !ele.checked;
@@ -160,20 +158,38 @@ export class Filter {
   simpleFilter(e) {
     if (!Boolean(e.target.getAttribute('check'))) {
       e.target.classList.add('bg-red');
-      window.location.search = `${window.location.search}&feature=${e.target.dataset.id}`;
+      window.location.search = `${window.location.search}&${e.target.dataset.name}=${e.target.dataset.id}`;
     } else {
       e.target.classList.remove('bg-red');
       e.target.setAttribute('check', '');
-      let regexp = new RegExp(`&feature=${e.target.dataset.id}`, 'i');
+      let regexp = new RegExp(
+        `&${e.target.dataset.name}=${e.target.dataset.id}`,
+        'i'
+      );
       console.log(regexp);
-      let mateched = window.location.search.replace(regexp, ' ');
+      let mateched = window.location.search.replace(regexp, '');
       window.location.search = mateched;
     }
   }
 
   simpleCheck(html) {
     const params = new URLSearchParams(window.location.search);
-    const features = params.getAll('feature');
+    let features = [];
+    params.forEach((val, key) => {
+      switch (key) {
+        case 'storage':
+          features.push(val);
+          break;
+        case 'operation':
+          features.push(val);
+          break;
+        case 'origin':
+          features.push(val);
+          break;
+        default:
+          break;
+      }
+    });
     let element = [];
     const elements = html.querySelectorAll('.filtered-version');
     elements.forEach((item) => {

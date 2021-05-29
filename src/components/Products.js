@@ -26,8 +26,8 @@ export class Product {
   fetchProducts() {
     loader.open();
     db.collection('products')
+      .limit(15)
       .get()
-
       .then((res) => {
         res.docs.forEach((item) => {
           let data = item.data();

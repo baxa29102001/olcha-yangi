@@ -27,6 +27,19 @@
                 <input type="text" id="sub-category-input">
                 <button type="button" id='sub-category-btn'>Sub btn</button>
             </div>
+
+            <div id="filter-sub-category">
+                <select id="filter-values">
+                    <option value="operation">Operation</option>
+                    <option value="origin">Origin</option>
+                    <option value="storage">Storage</option>
+                </select>
+                <input type="text" id="filter-operation__title">
+                <input type="text" id="filter-operation__arr">
+                <button type="button" id="build-arr">Add arr</button>
+                <button type="button" id="filter-operation-btn">Add operation items</button>
+                <div id="display"></div>
+            </div>
         </div>
 
 
@@ -36,21 +49,22 @@
                 <label for="title">Product title</label>
                 <input type="text" id="title">
                 <label for=" price-month">Price month</label>
-                <input type="text" id="price-month">
+                <input type="text" id="price-month" inputmode="decimal">
                 <label for="price-sum">Price sum</label>
-                <input type="text" id="price-sum">
+                <input type="text" id="price-sum" inputmode="decimal">
                 <label for="category">Choose a category:</label>
 
                 <select id="kategoriy">
-                    <!-- <option value="volvo">Volvo</option>
-                    <option value="saab">Saab</option>
-                    <option value="opel">Opel</option>
-                    <option value="audi">Audi</option> -->
                 </select>
                 <label for="card-sub__category">Card sub category</label>
                 <select id="card-sub__category">
-                    <option value="hp">HP</option>
                 </select>
+                <label for="filter-operation">Operation</label>
+                <select id="filter-operation"></select>
+                <label for="filter-storage">Storage</label>
+                <select id="filter-storage"></select>
+                <label for="filter-origin">Origin</label>
+                <select id="filter-origin"></select>
 
                 <label for="img" style="display: block;">Img</label>
                 <input type="file" id="img">

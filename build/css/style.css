@@ -490,6 +490,20 @@ body {
   animation: spin 1s linear infinite;
 }
 
+/* ------------------------------------Search products----------------------------------------------- */
+
+.search-items__container {
+  width: 50%;
+  height: 50%;
+  position: absolute;
+  top: 135px;
+  left: 238px;
+  background-color: rgb(54, 53, 53);
+  color: white;
+  display: none;
+}
+/* ------------------------------------/Search Products----------------------------------------------- */
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);

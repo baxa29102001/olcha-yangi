@@ -3,6 +3,9 @@ import firebase from 'firebase';
 import { ADAddCategory } from '../components/AdAddCategory';
 import { AdsubCategory } from '../components/ADsubCategory';
 import { SetProduct } from '../components/AdSetProduct';
+import { AdFilterAddCategory } from '../components/AdFilterAddCategory';
+import { FilterItemProduct } from '../components/AdFilterAddProduct';
+//documents
 
 export var firebaseConfig = {
   apiKey: 'AIzaSyAgZwsJMDkQVJHPpiuahohtNLtpyRMpBKc',
@@ -14,6 +17,7 @@ export var firebaseConfig = {
   measurementId: 'G-V8W5LF6E6T',
 };
 export const fire = firebase.initializeApp(firebaseConfig);
+export const FieldValue = firebase.firestore.FieldValue;
 firebase.analytics();
 
 export const db = firebase.firestore();

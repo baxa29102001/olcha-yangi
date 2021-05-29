@@ -4,7 +4,6 @@ function setField() {
     .doc('GvUne578sLRy43lhNApJ')
     .update({
       filter: {
-        brands: 'Ishlab chiqaruvchilar',
         operation: {
           arr: ['2.2 kg', '2.3 kg', '2 kg', '4 kg', '3.5 kg'],
           title: 'Vazni',
@@ -31,7 +30,6 @@ function setField() {
             'Intel Core I 7',
           ],
         },
-        price: 'Narxlar',
       },
     });
 }

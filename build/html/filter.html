@@ -86,12 +86,16 @@
                     </div>
                 </div>
                 <div class="main-header__public-search">
-                    <input type="text" class="main-header__public-input" placeholder="Mahsulotlar aro qidiruv" />
+                    <input type="text" class="main-header__public-input" id="search-product"
+                        placeholder="Mahsulotlar aro qidiruv" />
                     <button type="button" class="public-input-btn">
                         <i class="ri-search-line"></i>
                     </button>
+
                 </div>
+
             </div>
+
 
             <div class="main-header__user">
                 <div class="main-header-action main-header__user-login">
@@ -109,7 +113,18 @@
                 </div>
             </div>
         </div>
+
     </section>
+
+    <!-- Search Products -->
+    <section class="container">
+        <div class="search-items__container">
+            <div>
+                <h2>Baxa</h2>
+            </div>
+        </div>
+    </section>
+    <!-- /Search Products -->
     <!-- /Header main  -->
 
     <!-- Filter navbar -->
@@ -133,89 +148,6 @@
     <div class="container">
         <div class="filter-main__container">
             <div class="filter-block" id="filter-block">
-                <!-- <div class="filter-block__item">
-                    <h3 class="none-btn">Ishlab chiqaruvchi <i class="ri-arrow-drop-down-line"></i></h3>
-                    <div class="filter-none filtered-brands">
-                        <div class="filtered-input__group">
-                            <input type="checkbox" id="1">
-                            <label for="#1">Apple</label>
-                        </div>
-                        <div class="filtered-input__group">
-                            <input type="checkbox" id="2">
-                            <label for="#2">Samsung</label>
-                        </div>
-                        <div class="filtered-input__group">
-                            <input type="checkbox" id="3">
-                            <label for="#3">Redmi</label>
-                        </div>
-                        <div class="filtered-input__group">
-                            <input type="checkbox" id="4">
-                            <label for="#4">Xiomi</label>
-                        </div>
-                        <div class="filtered-input__group">
-                            <input type="checkbox" id="5">
-                            <label for="#5">Vivo</label>
-                        </div>
-                    </div>
-                </div> -->
-                <!-- <div class="filter-block__item">
-                    <h3 class="none-btn">Narx <i class="ri-arrow-drop-down-line"></i></h3>
-                    <div class="filter-none ">
-                        <div class="filter-price__input">
-                            <div class="filter-first__input" id='price__min'>
-                                <h4>Dan</h4>
-                                <input type="text" data-id='price__min' data-fill='' placeholder="00000">
-                            </div>
-                            <div class="filter-second__input" id='price__max'>
-                                <h4>Gacha</h4>
-                                <input type="text" data-id='price__max' data-fill='' placeholder="99999">
-                            </div>
-                        </div>
-
-                    </div>
-                </div> -->
-                <!-- <div class="filter-block__item">
-                    <h3 class="none-btn">Operatsion sistema <i class="ri-arrow-drop-down-line"></i></h3>
-                    <div class="filter-none ">
-                        <div class="filtered-version">
-                            <p>IOS 11</p>
-                            <p>IOS 10</p>
-                            <p>Android 12</p>
-                            <p>Android 10</p>
-                            <p>Ubuntu 20202020</p>
-                        </div>
-                    </div>
-                </div> -->
-                <!-- <div class="filter-block__item">
-                    <h3 class="none-btn">Doimiy hotira hajmi<i class="ri-arrow-drop-down-line"></i></h3>
-                    <div class=" filter-none ">
-                        <div class="filtered-version filtered-storage">
-                            <p>4GB</p>
-                            <p>8GB </p>
-                            <p>10GB</p>
-                            <p>12GB</p>
-                            <p>24GB</p>
-                            <p>32GB</p>
-                            <p>64GB</p>
-                        </div>
-
-                    </div>
-                </div> -->
-                <!-- <div class="filter-block__item">
-                    <h3 class="none-btn">Ishlab chiqaruvchi<i class="ri-arrow-drop-down-line"></i></h3>
-                    <div class=" filter-none ">
-                        <div class="filtered-version filtered-original ">
-                            <p class="bg-red">Vietnam</p>
-                            <p class="bg-red">Xitoy </p>
-                            <p class="bg-red">Aqsh </p>
-                        </div>
-
-
-                    </div>
-                </div> -->
-
-                <!-- <button type="button" class="clear-filter">Filterni Bekor qilish</button> -->
-
             </div>
             <div class="filtered-main__block">
                 <div class="mini-selected__filtir">
@@ -226,233 +158,6 @@
                     </select>
                 </div>
                 <div class="filtered__content">
-                    <!-- Single Product -->
-                    <div class="card">
-                        <a href="singleProduct.html?lang=ru">
-                            <div class="card-header-img">
-                                <img src="https://olcha.uz/image/200x200/products/mAeYyZSMJOzt0IK7DJlN9AQpICsOWvCjax5BheyNB7Vs9mpDaIgJGk0dOXYN.jpeg"
-                                    alt="">
-                            </div>
-                        </a>
-                        <div class="card-body">
-                            <a href="singleProduct.html?lang=ru">
-                                <h3 class="card-title">Telefonlar</h3>
-                            </a>
-                            <div class="card__info">
-                                <p>Lorem ipsum dolor sit amet consectetur <br> adipisicing elit. Commodi, recusandae?
-                                </p>
-                                <div class="stars">
-                                    <i class="ri-star-line"></i>
-                                    <i class="ri-star-line"></i>
-                                    <i class="ri-star-line"></i>
-                                    <i class="ri-star-line"></i>
-                                    <i class="ri-star-line"></i>
-                                </div>
-                                <p class="month-price">300000 so'm/oyiga</p>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <p>2 900 000 so'm</p>
-                        </div>
-                    </div>
-                    <!-- /Single Product -->
-                    <div class="card">
-                        <a href="singleProduct.html?lang=ru">
-                            <div class="card-header-img">
-                                <img src="https://olcha.uz/image/200x200/products/mAeYyZSMJOzt0IK7DJlN9AQpICsOWvCjax5BheyNB7Vs9mpDaIgJGk0dOXYN.jpeg"
-                                    alt="">
-                            </div>
-                        </a>
-                        <div class="card-body">
-                            <a href="singleProduct.html?lang=ru">
-                                <h3 class="card-title">Telefonlar</h3>
-                            </a>
-                            <div class="card__info">
-                                <p>Lorem ipsum dolor sit amet consectetur <br> adipisicing elit. Commodi, recusandae?
-                                </p>
-                                <div class="stars">
-                                    <i class="ri-star-line"></i>
-                                    <i class="ri-star-line"></i>
-                                    <i class="ri-star-line"></i>
-                                    <i class="ri-star-line"></i>
-                                    <i class="ri-star-line"></i>
-                                </div>
-                                <p class="month-price">300000 so'm/oyiga</p>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <p>2 900 000 so'm</p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <a href="singleProduct.html?lang=ru">
-                            <div class="card-header-img">
-                                <img src="https://olcha.uz/image/200x200/products/mAeYyZSMJOzt0IK7DJlN9AQpICsOWvCjax5BheyNB7Vs9mpDaIgJGk0dOXYN.jpeg"
-                                    alt="">
-                            </div>
-                        </a>
-                        <div class="card-body">
-                            <a href="singleProduct.html?lang=ru">
-                                <h3 class="card-title">Telefonlar</h3>
-                            </a>
-                            <div class="card__info">
-                                <p>Lorem ipsum dolor sit amet consectetur <br> adipisicing elit. Commodi, recusandae?
-                                </p>
-                                <div class="stars">
-                                    <i class="ri-star-line"></i>
-                                    <i class="ri-star-line"></i>
-                                    <i class="ri-star-line"></i>
-                                    <i class="ri-star-line"></i>
-                                    <i class="ri-star-line"></i>
-                                </div>
-                                <p class="month-price">300000 so'm/oyiga</p>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <p>2 900 000 so'm</p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <a href="singleProduct.html?lang=ru">
-                            <div class="card-header-img">
-                                <img src="https://olcha.uz/image/200x200/products/mAeYyZSMJOzt0IK7DJlN9AQpICsOWvCjax5BheyNB7Vs9mpDaIgJGk0dOXYN.jpeg"
-                                    alt="">
-                            </div>
-                        </a>
-                        <div class="card-body">
-                            <a href="singleProduct.html?lang=ru">
-                                <h3 class="card-title">Telefonlar</h3>
-                            </a>
-                            <div class="card__info">
-                                <p>Lorem ipsum dolor sit amet consectetur <br> adipisicing elit. Commodi, recusandae?
-                                </p>
-                                <div class="stars">
-                                    <i class="ri-star-line"></i>
-                                    <i class="ri-star-line"></i>
-                                    <i class="ri-star-line"></i>
-                                    <i class="ri-star-line"></i>
-                                    <i class="ri-star-line"></i>
-                                </div>
-                                <p class="month-price">300000 so'm/oyiga</p>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <p>2 900 000 so'm</p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <a href="singleProduct.html?lang=ru">
-                            <div class="card-header-img">
-                                <img src="https://olcha.uz/image/200x200/products/mAeYyZSMJOzt0IK7DJlN9AQpICsOWvCjax5BheyNB7Vs9mpDaIgJGk0dOXYN.jpeg"
-                                    alt="">
-                            </div>
-                        </a>
-                        <div class="card-body">
-                            <a href="singleProduct.html?lang=ru">
-                                <h3 class="card-title">Telefonlar</h3>
-                            </a>
-                            <div class="card__info">
-                                <p>Lorem ipsum dolor sit amet consectetur <br> adipisicing elit. Commodi, recusandae?
-                                </p>
-                                <div class="stars">
-                                    <i class="ri-star-line"></i>
-                                    <i class="ri-star-line"></i>
-                                    <i class="ri-star-line"></i>
-                                    <i class="ri-star-line"></i>
-                                    <i class="ri-star-line"></i>
-                                </div>
-                                <p class="month-price">300000 so'm/oyiga</p>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <p>2 900 000 so'm</p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <a href="singleProduct.html?lang=ru">
-                            <div class="card-header-img">
-                                <img src="https://olcha.uz/image/200x200/products/mAeYyZSMJOzt0IK7DJlN9AQpICsOWvCjax5BheyNB7Vs9mpDaIgJGk0dOXYN.jpeg"
-                                    alt="">
-                            </div>
-                        </a>
-                        <div class="card-body">
-                            <a href="singleProduct.html?lang=ru">
-                                <h3 class="card-title">Telefonlar</h3>
-                            </a>
-                            <div class="card__info">
-                                <p>Lorem ipsum dolor sit amet consectetur <br> adipisicing elit. Commodi, recusandae?
-                                </p>
-                                <div class="stars">
-                                    <i class="ri-star-line"></i>
-                                    <i class="ri-star-line"></i>
-                                    <i class="ri-star-line"></i>
-                                    <i class="ri-star-line"></i>
-                                    <i class="ri-star-line"></i>
-                                </div>
-                                <p class="month-price">300000 so'm/oyiga</p>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <p>2 900 000 so'm</p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <a href="singleProduct.html?lang=ru">
-                            <div class="card-header-img">
-                                <img src="https://olcha.uz/image/200x200/products/mAeYyZSMJOzt0IK7DJlN9AQpICsOWvCjax5BheyNB7Vs9mpDaIgJGk0dOXYN.jpeg"
-                                    alt="">
-                            </div>
-                        </a>
-                        <div class="card-body">
-                            <a href="singleProduct.html?lang=ru">
-                                <h3 class="card-title">Telefonlar</h3>
-                            </a>
-                            <div class="card__info">
-                                <p>Lorem ipsum dolor sit amet consectetur <br> adipisicing elit. Commodi, recusandae?
-                                </p>
-                                <div class="stars">
-                                    <i class="ri-star-line"></i>
-                                    <i class="ri-star-line"></i>
-                                    <i class="ri-star-line"></i>
-                                    <i class="ri-star-line"></i>
-                                    <i class="ri-star-line"></i>
-                                </div>
-                                <p class="month-price">300000 so'm/oyiga</p>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <p>2 900 000 so'm</p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <a href="singleProduct.html?lang=ru">
-                            <div class="card-header-img">
-                                <img src="https://olcha.uz/image/200x200/products/mAeYyZSMJOzt0IK7DJlN9AQpICsOWvCjax5BheyNB7Vs9mpDaIgJGk0dOXYN.jpeg"
-                                    alt="">
-                            </div>
-                        </a>
-                        <div class="card-body">
-                            <a href="singleProduct.html?lang=ru">
-                                <h3 class="card-title">Telefonlar</h3>
-                            </a>
-                            <div class="card__info">
-                                <p>Lorem ipsum dolor sit amet consectetur <br> adipisicing elit. Commodi, recusandae?
-                                </p>
-                                <div class="stars">
-                                    <i class="ri-star-line"></i>
-                                    <i class="ri-star-line"></i>
-                                    <i class="ri-star-line"></i>
-                                    <i class="ri-star-line"></i>
-                                    <i class="ri-star-line"></i>
-                                </div>
-                                <p class="month-price">300000 so'm/oyiga</p>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <p>2 900 000 so'm</p>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </div>

@@ -10,6 +10,12 @@ export class ADAddCategory {
     db.collection('category')
       .add({
         'category-title': value,
+        filter: {
+          operation: {},
+          storage: {},
+          origin: {},
+        },
+        'sub-category': [],
       })
       .then((res) => {
         console.log('succes');

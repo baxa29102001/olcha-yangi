@@ -1,4 +1,5 @@
-import { db, fire } from '../js/admin';
+import { db, fire, FieldValue } from '../js/admin';
+
 // document
 const subCategory = document.getElementById('sub-category');
 const subCategoryInput = document.getElementById('sub-category-input');
@@ -13,7 +14,6 @@ export class AdsubCategory {
 
   static subCategoryFunc() {
     const value = subCategoryInput.value;
-    const FieldValue = fire.firestore.FieldValue;
     db.collection('category')
       .doc(categoryId)
       .update({ 'sub-category': FieldValue.arrayUnion(value) })

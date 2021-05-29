@@ -1,5 +1,6 @@
 //imports
 import { db } from '../js/admin';
+import { FilterItemProduct } from '../components/AdFilterAddProduct';
 
 //documents
 const category = document.getElementById('kategoriy');
@@ -12,8 +13,10 @@ let filterSubCategory;
 //functions
 
 export function categoryFunc(e) {
-  id = category.options[category.options.selectedIndex || 0].value;
+  id = category.options[category.options.selectedIndex].value;
   miniSubCategory(id);
+  const filterProduct = new FilterItemProduct(id);
+  filterProduct.fetchItems();
   return (quantity =
     category.options[category.options.selectedIndex].innerHTML);
 }
