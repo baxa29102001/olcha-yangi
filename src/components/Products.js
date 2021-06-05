@@ -1,5 +1,6 @@
 import firebase from 'firebase';
 import { Loader } from './Loader';
+import { render } from '../helper/totalSum';
 const loader = new Loader();
 export let firebaseConfig = {
   apiKey: 'AIzaSyAgZwsJMDkQVJHPpiuahohtNLtpyRMpBKc',
@@ -17,7 +18,7 @@ export const imgStorage = firebase.storage();
 export const db = firebase.firestore();
 db.settings({ timestampsInSnapshots: false });
 let dataArray = [];
-
+let arr = [];
 export class Product {
   constructor(target) {
     this.target = target;
@@ -31,7 +32,6 @@ export class Product {
       .then((res) => {
         res.docs.forEach((item) => {
           let data = item.data();
-          console.log('data');
           imgStorage
             .ref(`products/${item.id}/data.jpg`)
             .getDownloadURL()
@@ -46,6 +46,19 @@ export class Product {
               console.log(err);
             });
         });
+      })
+      .then(() => {
+        db.collection('cart')
+          .get()
+          .then((res) => {
+            res.docs.forEach((item) => {
+              let data = item.data();
+              arr.push(data);
+            });
+          })
+          .then(() => {
+            render(arr);
+          });
       })
       .catch((err) => {
         console.log(err);

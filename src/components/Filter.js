@@ -1,9 +1,12 @@
 import { db, imgStorage, firebaseData } from './Products';
 import { Loader } from './Loader';
 import { beutifuyFunc } from '../helper/beutifuyNum';
+import { render } from '../helper/totalSum';
 
 const filterBlock = document.getElementById('filter-block');
 let check = false;
+const loader = new Loader();
+let arr = [];
 
 export class Filter {
   constructor(id) {
@@ -11,12 +14,27 @@ export class Filter {
   }
 
   fetchFilterItems() {
+    loader.open();
     db.collection('category')
       .doc(this.id)
       .get()
       .then((res) => {
         let data = res.data();
         this.render(data.filter, data['sub-category']);
+        loader.close();
+      })
+      .then(() => {
+        db.collection('cart')
+          .get()
+          .then((res) => {
+            res.docs.forEach((item) => {
+              let data = item.data();
+              arr.push(data);
+            });
+          })
+          .then(() => {
+            render();
+          });
       });
   }
 

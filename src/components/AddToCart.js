@@ -3,6 +3,9 @@ import { Loader } from './Loader';
 const cartAlert = document.querySelector('.cart-alert');
 const cartBtn = document.querySelector('.cart-btn');
 const productLoader = new Loader();
+import { plusMinus } from '../helper/plusMinus';
+
+let arr = JSON.parse(localStorage.getItem('cart')) || [];
 export class AddToCart {
   constructor(id) {
     this.id = id;
@@ -11,28 +14,25 @@ export class AddToCart {
 
   findProduct() {
     productLoader.open();
+
     db.collection('products')
       .doc(this.id)
       .get()
       .then((res) => {
-        db.collection('cart')
-          .add({ ...res.data(), amount: 1, imgId: this.id })
-          .then((res) => {
-            res.get().then((data) => {
-              productLoader.close();
-              this.obj = { ...data.data(), id: data.id };
-              this.render();
-            });
-          })
-          .catch((err) => {
-            console.log('err', err);
-          });
+        this.obj = {
+          id: Math.random().toFixed(3),
+          ...res.data(),
+          amount: 1,
+          imgId: this.id,
+        };
+        arr.push(this.obj);
+        localStorage.setItem('cart', JSON.stringify(arr));
+        this.render();
+        productLoader.close();
       });
   }
 
   render() {
-    cartBtn.disabled = true;
-    cartBtn.style.cursor = 'not-allowed';
     let html = '';
     html = ` <div class="cart-container">
             <h2>Tovar savatga qoshildi</h2>
@@ -72,45 +72,20 @@ export class AddToCart {
 
   plusAmount() {
     productLoader.open();
-    db.collection('cart')
-      .doc(this.obj.id)
-      .update({
-        amount: this.obj.amount + 1,
-      })
-      .then(() => {
-        db.collection('cart')
-          .doc(this.obj.id)
-          .get()
-          .then((res) => {
-            productLoader.close();
-            let obj = res.data();
-            this.obj = { ...obj, id: res.id };
-            this.cartAmount.innerHTML = obj.amount;
-          });
-      });
+    plusMinus({
+      id: this.obj.id,
+      target: this.cartAmount,
+    });
+
+    productLoader.close();
   }
   minusAmount() {
-    if (this.obj.amount <= 1) {
-      console.log('minus');
-      return;
-    }
-
-    productLoader.open();
-    db.collection('cart')
-      .doc(this.obj.id)
-      .update({
-        amount: this.obj.amount - 1,
-      })
-      .then(() => {
-        db.collection('cart')
-          .doc(this.obj.id)
-          .get()
-          .then((res) => {
-            productLoader.close();
-            let obj = res.data();
-            this.obj = { ...obj, id: res.id };
-            this.cartAmount.innerHTML = obj.amount;
-          });
-      });
+    plusMinus(
+      {
+        id: this.obj.id,
+        target: this.cartAmount,
+      },
+      'minus'
+    );
   }
 }

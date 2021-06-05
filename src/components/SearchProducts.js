@@ -2,6 +2,7 @@ import { db } from './Products';
 
 // Documents
 const searchInput = document.getElementById('search-product');
+const container__search = document.querySelector('.container__search');
 const searchItems = document.querySelector('.search-items__container');
 const arr = [];
 export class SearchProduct {
@@ -15,34 +16,39 @@ export class SearchProduct {
       .then((res) => {
         res.docs.forEach((item) => {
           let data = item.data();
-          arr.push(data);
+          arr.push({ ...data, id: item.id });
         });
       });
   }
 
   static search(e) {
     if (e.target.value.trim().length > 0) {
-      searchItems.style.display = 'block';
+      container__search.style.display = 'block';
       let val = e.target.value;
       let regex = new RegExp(`${val}`, 'i', 'g');
       let title = arr.filter((item) => item.title.match(regex));
       let category = arr.filter((item) => item.category.match(regex));
       let brand = arr.filter((item) => item.brands.match(regex));
-      console.log(`title=>`, title, `brand=>`, brand, `catgeory=>`, category);
       let html = '';
       brand.map((item) => {
-        return (html += `<li>${item.title}<li>`);
+        return (html += ` <li>
+                    <a href="singleProduct.html?id=${item.id}">${item.title}</a>
+                </li>`);
       });
       category.map((item) => {
-        return (html += `<li>${item.title}<li>`);
+        return (html += ` <li>
+                    <a href="singleProduct.html?id=${item.id}">${item.title}</a>
+                </li>`);
       });
       title.map((item) => {
-        return (html += `<li>${item.title}<li>`);
+        return (html += ` <li>
+                   <a href="singleProduct.html?id=${item.id}">${item.title}</a>
+                </li>`);
       });
-      console.log(html);
       searchItems.innerHTML = html;
     } else {
       searchItems.style.display = 'none';
+      searchInput.value = '';
     }
   }
 }

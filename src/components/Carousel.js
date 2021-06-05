@@ -13,7 +13,6 @@ let index = 1;
 let carouselItemWidth = carouselItem[0].clientWidth;
 let productWidth = 240 || productCards[0].clientWidth;
 let newProductWidth = newProductCards[0].clientWidth;
-console.log(productWidth);
 bannerContainer.style.transform = `translateX(-${index * carouselItemWidth}px)`;
 
 export class Carousel {

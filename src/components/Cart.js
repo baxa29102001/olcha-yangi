@@ -11,6 +11,7 @@ const hisobItem = document.getElementById('hisob-kitob__item');
 const hisobJami = document.getElementById('hisob-kitob__jami');
 
 const loader = new Loader();
+
 export class Cart {
   constructor(target) {
     this.target = target;
@@ -19,36 +20,25 @@ export class Cart {
 
   fetchItems() {
     loader.open();
-    db.collection('cart')
-      .get()
-      .then((res) => {
-        if (res.docs.length <= 0) {
-          this.render(res.docs);
-          loader.close();
-        }
-        res.docs.forEach((item) => {
-          let data = item.data();
-          let categoryUrl = '';
-          console.log(data.category.slice(9));
-          db.collection('category')
-            .doc(data.category.slice(9))
-            .get()
-            .then((res) => {
-              categoryUrl = res.data()['category-title'];
-            });
+
+    const arr1 = [];
+    const arr = JSON.parse(localStorage.getItem('cart')) || [];
+
+    arr.length != 0
+      ? arr.forEach((item) => {
+          let categoryUrl = item.category;
           imgStorage
-            .ref(`products/${data.imgId}/data.jpg`)
+            .ref(`products/${item.imgId}/data.jpg`)
             .getDownloadURL()
             .then((res) => {
-              this.arr.push({ ...data, id: item.id, imgUrl: res, categoryUrl });
+              arr1.push({ ...item, id: item.id, imgUrl: res, categoryUrl });
+              this.render(arr1);
+              this.sumUp(arr1);
               loader.close();
-              this.render(this.arr);
-            })
-            .then(() => {
-              this.sumUp(this.arr);
             });
-        });
-      });
+        })
+      : this.render(arr);
+    loader.close();
   }
 
   render(arr1) {
@@ -57,14 +47,13 @@ export class Cart {
       emptyContainer.style.display = 'block';
       return;
     }
-
     cartContainer.style.display = 'block';
     let html = '';
     arr1.map((item) => {
       return (html += `
       <div class="cart-items__info">
                     <div class="cart-item__img">
-                        <img src="https://olcha.uz/image/80x80/products/ILAl7RsKkwMnmfK2zIDvvdXnP7SreWXMQqmWkImeBtbaHC9bkFHG8Ok1QpeO.jpeg"
+                        <img src=${item.imgUrl}
                             alt="">
                     </div>
                     <div class="cart-item__info">
@@ -118,82 +107,62 @@ export class Cart {
   }
 
   removeFunc(id) {
-    loader.open();
-    db.collection('cart')
-      .doc(id)
-      .delete()
-      .then(() => {
-        this.arr = [];
-        this.fetchItems();
-        this.sumUp();
-        loader.close();
-      });
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const arr2 = cart.filter((item) => item.id !== id);
+    if (arr2.length > 0) {
+      localStorage.setItem('cart', JSON.stringify(arr2));
+    } else {
+      localStorage.removeItem('cart');
+    }
+    this.fetchItems();
   }
 
   plus(id) {
-    let obj = this.arr.find((item) => item.id === id);
+    const arr = JSON.parse(localStorage.getItem('cart')) || [];
 
-    loader.open();
-    db.collection('cart')
-      .doc(id)
-      .update({
-        amount: obj.amount + 1,
-      })
-      .then(() => {
-        db.collection('cart')
-          .doc(id)
-          .get()
-          .then((res) => {
-            let dataAmount = res.data();
-            let arr = [...this.amount];
-            let obj = arr.findIndex((item) => item.dataset.id === id);
-            this.amount[obj].innerHTML = dataAmount.amount;
-            this.arr = [];
-            this.fetchItems();
-            this.sumUp();
-            loader.close();
-          });
-      });
+    let objIndex = arr.findIndex((item) => item.id === id);
+    let product = arr[objIndex];
+
+    let obj = {
+      ...product,
+      amount: product.amount + 1,
+    };
+    arr[objIndex] = obj;
+    localStorage.setItem('cart', JSON.stringify(arr));
+    this.fetchItems();
   }
   minus(id) {
-    let obj = this.arr.find((item) => item.id === id);
-    if (obj.amount <= 1) {
+    const arr = JSON.parse(localStorage.getItem('cart')) || [];
+
+    let objIndex = arr.findIndex((item) => item.id === id);
+    let product = arr[objIndex];
+    if (product.amount <= 1) {
       return;
     }
 
-    loader.open();
-    db.collection('cart')
-      .doc(id)
-      .update({
-        amount: obj.amount - 1,
-      })
-      .then(() => {
-        db.collection('cart')
-          .doc(id)
-          .get()
-          .then((res) => {
-            let dataAmount = res.data();
-            let arr = [...this.amount];
-            let obj = arr.findIndex((item) => item.dataset.id === id);
-            this.amount[obj].innerHTML = dataAmount.amount;
-            this.arr = [];
-            this.fetchItems();
-            this.sumUp();
-            loader.close();
-          });
-      });
+    let obj = {
+      ...product,
+      amount: product.amount - 1,
+    };
+    arr[objIndex] = obj;
+    localStorage.setItem('cart', JSON.stringify(arr));
+    this.fetchItems();
   }
 
   sumUp(arr) {
     let itemIndex = 0;
     let priceSum = 0;
-    arr &&
-      arr.forEach((item, index) => {
-        itemIndex += item.amount;
-        priceSum += item.amount * +item['price-sum'];
-      });
+
+    arr.forEach((item, index) => {
+      itemIndex += item.amount;
+      priceSum += item.amount * Number(clearSapce(item['price-sum']));
+    });
     cartItem.textContent = itemIndex;
     hisobItem.textContent = itemIndex + ' ta';
     hisobJami.textContent = beutifuyFunc(String(priceSum)) + " so'm";
   }
+}
+
+function clearSapce(str) {
+  return str.replace(/\s/g, '');
 }

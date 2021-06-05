@@ -9,6 +9,7 @@
   display: grid;
   grid-template-columns: 1fr 4fr;
   column-gap: 10px;
+  overflow: hidden;
 }
 .filtered__content {
   display: grid;
@@ -49,4 +50,28 @@
   background-color: var(--red);
   color: white;
   border: none !important;
+}
+
+.clear-filter {
+  background-color: var(--red);
+  border-radius: 10px;
+  border: none;
+  padding: 5px 10px;
+  color: #fff;
+}
+
+@media only screen and (max-width: 600px) {
+  .filter-main__container {
+    grid-template-columns: 1fr;
+  }
+
+  .clear-filter {
+    text-align: center;
+  }
+
+  .filtered__content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 10px;
+  }
 }

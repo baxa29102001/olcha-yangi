@@ -1,10 +1,12 @@
 import { db, imgStorage } from './Products';
 import { Loader } from './Loader';
 import { AddToCart } from './AddToCart';
+import { render } from '../helper/totalSum';
 const urlParams = new URLSearchParams(window.location.search);
 const myParam = urlParams.get('id');
 const addToCart = new AddToCart(myParam);
 const loader = new Loader();
+let arr = [];
 export class SingleProduct {
   constructor(id, target) {
     this.id = id;
@@ -29,6 +31,19 @@ export class SingleProduct {
               this.render(arr);
             });
         });
+      })
+      .then(() => {
+        db.collection('cart')
+          .get()
+          .then((res) => {
+            res.docs.forEach((item) => {
+              let data = item.data();
+              arr.push(data);
+            });
+          })
+          .then(() => {
+            render();
+          });
       });
   }
 
@@ -98,6 +113,10 @@ export class SingleProduct {
     });
     this.target.innerHTML = html;
     let cartBtn = this.target.querySelector('.cart-btn');
-    cartBtn.addEventListener('click', addToCart.findProduct.bind(addToCart));
+    cartBtn.addEventListener('click', () => {
+      cartBtn.disabled = true;
+      cartBtn.style.cursor = 'not-allowed';
+      addToCart.findProduct();
+    });
   }
 }

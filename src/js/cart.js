@@ -2,6 +2,7 @@ import { Category } from '../components/Category';
 import { Cart } from '../components/Cart';
 import { beutifuyFunc } from '../helper/beutifuyNum';
 import { CategoryBtn } from '../components/CategoryBtn';
+import { SearchProduct } from '../components/SearchProducts';
 
 const categoryContainer = document.getElementById('category-btn-container');
 
@@ -12,4 +13,5 @@ document.addEventListener('DOMContentLoaded', () => {
   categoryList.getCategory();
   const miniCart = new Cart();
   miniCart.fetchItems();
+  const searchProduct = new SearchProduct();
 });
