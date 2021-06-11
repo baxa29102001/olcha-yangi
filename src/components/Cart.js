@@ -45,6 +45,7 @@ export class Cart {
     if (arr1.length <= 0) {
       cartContainer.style.display = 'none';
       emptyContainer.style.display = 'block';
+      this.sumUp(arr1);
       return;
     }
     cartContainer.style.display = 'block';
@@ -53,7 +54,8 @@ export class Cart {
       return (html += `
       <div class="cart-items__info">
                     <div class="cart-item__img">
-                        <img src=${item.imgUrl}
+                        <img class="img-size"
+                        src=${item.imgUrl}
                             alt="">
                     </div>
                     <div class="cart-item__info">
@@ -161,8 +163,16 @@ export class Cart {
     hisobItem.textContent = itemIndex + ' ta';
     hisobJami.textContent = beutifuyFunc(String(priceSum)) + " so'm";
   }
+
+  removeAllItems() {
+    let spaceArr = [];
+    localStorage.setItem('cart', JSON.stringify(spaceArr));
+  }
 }
 
 function clearSapce(str) {
   return str.replace(/\s/g, '');
 }
+const cart = new Cart();
+
+setTimeout(cart.removeAllItems, 500000);

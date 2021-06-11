@@ -1,6 +1,7 @@
 const categoryContainer = document.getElementById('category-btn-container');
 const categoryBtn = document.querySelector('.main-header__public-btn');
 const categoryBtnLayer = document.getElementById('category-btn-layer');
+const closeModal = document.querySelector('.close-modal-2');
 
 export class CategoryBtn {
   constructor() {}
@@ -25,4 +26,5 @@ export class CategoryBtn {
 }
 
 categoryBtn.addEventListener('click', CategoryBtn.toggle);
+closeModal.addEventListener('click', CategoryBtn.toggle);
 categoryContainer.addEventListener('click', CategoryBtn.tabsFunc);

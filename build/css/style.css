@@ -44,7 +44,7 @@ body {
   padding: 0 10px;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 2px solid var(--hover-gray);
+  border-bottom: 2px solid var(--red);
 }
 
 .lang {
@@ -68,7 +68,35 @@ body {
 
 .bg-change-btn {
   display: flex;
+  width: 25px;
   align-items: center;
+  border: 1px solid rgb(43, 39, 39);
+  padding: 0px 24px;
+  border-radius: 15px;
+  position: relative;
+  height: 26px;
+  background-color: whitesmoke;
+  margin-bottom: 10px;
+}
+
+.dot-change {
+  width: 23px;
+  height: 24px;
+  background-color: #fd8400ff;
+  border-radius: 100%;
+  position: absolute;
+  top: 1px;
+  left: 2px;
+  cursor: pointer;
+  transition: var(--time);
+}
+
+.bg-class {
+  transition: var(--time);
+  position: absolute;
+  background-color: #fd8400ff;
+  top: 1px;
+  left: 47px;
 }
 .top-header__info {
   display: flex;
@@ -155,6 +183,17 @@ body {
   background-color: white;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+  color: black !important;
+}
+.main-category {
+  text-decoration: underline;
+  font-size: 20px;
+  text-transform: uppercase;
+  color: black;
+}
+.category-a {
+  text-decoration: none;
+  color: var(--text-gray);
 }
 
 .category-ul {
@@ -167,6 +206,19 @@ body {
   padding: 10px 10px;
   transition: var(--time);
   border-radius: 10px 0 0 10px;
+  cursor: pointer;
+}
+.close-modal-2 {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  font-size: 30px;
+  font-weight: 800;
+  color: white;
+  background-color: var(--red);
+  padding: 5px 10px;
+  border-radius: 10px;
+  text-align: center;
   cursor: pointer;
 }
 
@@ -190,6 +242,7 @@ body {
   padding: 10px 10px;
   outline: none;
   border-radius: 5px;
+  background-color: transparent;
 }
 
 .main-header__public-input::placeholder {
@@ -232,6 +285,9 @@ body {
   font-weight: 400;
 
   transition: var(--time);
+}
+.user-all-btn.active {
+  color: white;
 }
 .user-all-btn:focus {
   outline: none;
@@ -277,7 +333,7 @@ body {
 .filter-item {
   margin-right: 30px;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: bold;
   color: var(--text-gray);
   cursor: pointer;
   padding: 10px 10px;
@@ -287,6 +343,17 @@ body {
   background-color: var(--hover-gray);
   border-radius: 5px;
 }
+
+.filter-item:nth-child(even) {
+  color: var(--red);
+}
+.filter-item:nth-child(odd) {
+  color: #e1c60cff;
+}
+.filter-item:nth-child(5) {
+  color: #034ea2ff;
+}
+
 /* ------------------------------------------/Filter navbar----------------------------------------------- */
 
 /* -----------------------------------------------Main Banner----------------------------------------------------- */
@@ -326,6 +393,10 @@ body {
 .banner-info {
   width: 300px;
   padding: 10px;
+}
+.banner-info p,
+h2 {
+  color: black !important;
 }
 
 .next-before-btn {
@@ -504,6 +575,7 @@ body {
   border-radius: 4px;
   box-shadow: 4px 0 12px rgb(0 0 0 / 10%);
   display: none;
+  z-index: 999999999;
 }
 .search-items__container {
   list-style: none;
@@ -615,5 +687,11 @@ body {
 
   .category-btn-container {
     width: 100%;
+  }
+
+  .container__search {
+    width: 84%;
+    left: 23px;
+    top: 161px;
   }
 }

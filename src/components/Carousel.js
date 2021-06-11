@@ -5,14 +5,10 @@ const beforeBtn = document.getElementById('before');
 const productContainer = document.querySelector('.products-container__slider');
 const productCards = document.querySelectorAll('#products .card');
 const newProductsContainer = document.getElementById('new-product');
-const newProductCards = document.querySelectorAll('#new-product .card');
-const mostProductsContainer = document.getElementById('most-products');
-const categoryContainer = document.getElementById('category-btn-container');
 
 let index = 1;
 let carouselItemWidth = carouselItem[0].clientWidth;
 let productWidth = 240 || productCards[0].clientWidth;
-let newProductWidth = newProductCards[0].clientWidth;
 bannerContainer.style.transform = `translateX(-${index * carouselItemWidth}px)`;
 
 export class Carousel {
@@ -58,11 +54,7 @@ const bannerCarousel = new Carousel(
 
 const productCarousel = new Carousel(productWidth, productContainer, 13);
 
-const newProductCarousel = new Carousel(
-  newProductWidth,
-  newProductsContainer,
-  newProductCards.length
-);
+const newProductCarousel = new Carousel(productWidth, newProductsContainer, 13);
 
 nextBtn.addEventListener(
   'click',
@@ -88,4 +80,5 @@ newProductsContainer.addEventListener(
 );
 
 setInterval(bannerCarousel.rightFunc.bind(bannerCarousel), 2000);
-setInterval(productCarousel.rightFunc.bind(productCarousel), 2000);
+setInterval(productCarousel.rightFunc.bind(productCarousel), 4000);
+setInterval(newProductCarousel.rightFunc.bind(newProductCarousel), 3000);

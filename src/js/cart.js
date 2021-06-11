@@ -3,6 +3,7 @@ import { Cart } from '../components/Cart';
 import { beutifuyFunc } from '../helper/beutifuyNum';
 import { CategoryBtn } from '../components/CategoryBtn';
 import { SearchProduct } from '../components/SearchProducts';
+import { changeBgFunc } from '../helper/bgHelper';
 
 const categoryContainer = document.getElementById('category-btn-container');
 

@@ -1,6 +1,9 @@
 import firebase from 'firebase';
 import { Loader } from './Loader';
 import { render } from '../helper/totalSum';
+
+//Documents
+const newProductsContainer = document.getElementById('new-product');
 const loader = new Loader();
 export let firebaseConfig = {
   apiKey: 'AIzaSyAgZwsJMDkQVJHPpiuahohtNLtpyRMpBKc',
@@ -104,5 +107,6 @@ export class Product {
     });
 
     this.target.innerHTML = html;
+    newProductsContainer.innerHTML = html;
   }
 }

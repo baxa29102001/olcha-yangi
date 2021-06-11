@@ -4,6 +4,7 @@ import { Filter } from '../components/Filter';
 import { FilteredCards } from '../components/FilteredCards';
 import { db, firebaseData } from '../components/Products';
 import { SearchProduct } from '../components/SearchProducts';
+import { changeBgFunc } from '../helper/bgHelper';
 
 const categoryContainer = document.getElementById('category-btn-container');
 const params = new URLSearchParams(window.location.search);
@@ -17,10 +18,3 @@ document.addEventListener('DOMContentLoaded', () => {
   filteredCard.fetchItems();
   const searchProduct = new SearchProduct();
 });
-
-const bgChange = document.getElementById('background-change');
-
-function bgColorFunc() {
-  document.body.classList.toggle('body-change');
-}
-bgChange.addEventListener('click', bgColorFunc);

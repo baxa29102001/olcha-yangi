@@ -20,13 +20,25 @@ export class AddToCart {
       .get()
       .then((res) => {
         this.obj = {
-          id: Math.random().toFixed(3),
+          id: this.id, //Math.random().toFixed(3),
           ...res.data(),
           amount: 1,
           imgId: this.id,
         };
-        arr.push(this.obj);
-        localStorage.setItem('cart', JSON.stringify(arr));
+        let existItemIndex = arr.findIndex((item) => item.id === this.obj.id);
+        let existItem = arr[existItemIndex];
+        if (!existItem) {
+          arr.push(this.obj);
+          localStorage.setItem('cart', JSON.stringify(arr));
+        } else {
+          let obj = {
+            ...existItem,
+            amount: existItem.amount + 1,
+          };
+          arr[existItemIndex] = obj;
+          localStorage.setItem('cart', JSON.stringify(arr));
+        }
+
         this.render();
         productLoader.close();
       });
