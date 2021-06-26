@@ -25,7 +25,7 @@ export class Category {
           let mainCategory = data['category-title'];
           subCategory += ` 
            <li class="content" id=${ele.id}>
-            <a href='filter.html?filterId=${
+            <a href='filter?filterId=${
               ele.id
             }' class='main-category' >${mainCategory}</a>
               ${arr

@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanPlugin = require('clean-webpack-plugin');
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   entry: {
     main: './src/js/app.js',
     admin: './src/js/admin.js',
@@ -14,12 +14,11 @@ module.exports = {
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, 'build', 'scripts'),
-    publicPath: 'build/scripts',
+    publicPath: './build/html',
   },
-  devtool: 'eval-source-map',
+  //   devtool: 'source-map',
   devServer: {
-    contentBase: './build/html',
-    compress: true,
+    publicPath: './build/html',
     open: true,
   },
   module: {
